@@ -1,4 +1,4 @@
-package modular;
+package rev.pe.math.modular;
 
 public class Mod
 {

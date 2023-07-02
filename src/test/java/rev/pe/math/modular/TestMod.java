@@ -1,7 +1,6 @@
 package rev.pe.math.modular;
 
 import lombok.extern.slf4j.Slf4j;
-import modular.Mod;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
