@@ -9,4 +9,8 @@ public class Vec2
         this.x = x;
         this.y = y;
     }
+
+    public double dot(Vec2 v) {
+        return x*v.x + y*v.y;
+    }
 }
