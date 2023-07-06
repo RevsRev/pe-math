@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 public class PrimeCheck
 {
     private static final long PRIME_CACHE_SIZE = 10000;
-    private static LinkedHashSet<Long> primeCache = SieveOfEratosthenes.sieveOfEratosthenes(PRIME_CACHE_SIZE);
+    public static LinkedHashSet<Long> primeCache = SieveOfEratosthenes.sieveOfEratosthenes(PRIME_CACHE_SIZE);
 
     private static final long PRIME_WITNESSES_SIZE = 50;
     private static LinkedHashSet<Long> primeWitnesses = SieveOfEratosthenes.sieveOfEratosthenes(PRIME_WITNESSES_SIZE);
@@ -31,9 +31,13 @@ public class PrimeCheck
             return true;
         }
 
+        if (n%2 == 0) {
+            return false;
+        }
+
         //Do the usual check
         long limit = (long)Math.ceil(Math.sqrt(n)) + 1;
-        for (int i=3; i<= limit; i+=2) {
+        for (int i=5; i<= limit; i+=2) {
             if ((n%i) == 0) {
                 return false;
             }
