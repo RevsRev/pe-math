@@ -9,6 +9,13 @@ public class Gcd
             b = c;
         }
 
+        if (a == 0) {
+            return b;
+        }
+        if (b == 0) {
+            return a;
+        }
+
         long rem = a % b;
         while (rem != 0) {
             a = b;
