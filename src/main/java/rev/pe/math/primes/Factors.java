@@ -1,11 +1,9 @@
 package rev.pe.math.primes;
 
 import lombok.extern.slf4j.Slf4j;
+import rev.pe.math.util.Pow;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 @Slf4j
 public class Factors
@@ -54,6 +52,24 @@ public class Factors
         }
 
         return factors;
+    }
+
+    public static long eulerTotient(long n) {
+
+        if (n==0) {
+            return 0;
+        }
+
+        long retval = 1;
+
+        Map<Long,Long> factors = factorise(n);
+        Iterator<Long> it = factors.keySet().iterator();
+        while (it.hasNext()) {
+            long prime = it.next();
+            long exponent = factors.get(prime);
+            retval *= Pow.pow(prime, exponent - 1) * (prime - 1);
+        }
+        return retval;
     }
 
     public static void printFactors(long n) {
