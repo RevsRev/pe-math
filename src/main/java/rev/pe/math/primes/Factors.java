@@ -72,6 +72,71 @@ public class Factors
         return retval;
     }
 
+    public static long fastEulerTotient(long n) {
+        return fastEulerTotient(n, new HashMap<Long,Long>());
+    }
+
+    public static long fastEulerTotient(long n, Map<Long,Long> totientCache) {
+
+        if (totientCache.containsKey(n)) {
+            return totientCache.get(n);
+        }
+
+
+        if (n == 1) {
+            totientCache.put((long)1, (long)1);
+            return 1;
+        }
+
+        if (n % 2 == 0) {
+            long pow = 1;
+            long a = 2;
+            long b = n/2;
+            while (b%2 == 0) {
+                a = 2*a;
+                b = b/2;
+                pow +=1;
+            }
+
+            if (b==1) {
+                return Pow.pow(2, pow - 1);
+            }
+
+            long result = fastEulerTotient(b, totientCache) * Pow.pow(2, pow - 1);
+            totientCache.put(n, result);
+            return result;
+        }
+
+        long limit = (long)Math.ceil(Math.sqrt(n));
+        for (long i=3; i<=limit; i+=2) {
+            if (n % i == 0)
+            {
+                long pow = 1;
+                long a = i;
+                long b = n / i;
+                while (b % i == 0)
+                {
+                    a = i * a;
+                    b = b / i;
+                    pow += 1;
+                }
+
+                if (b == 1) {
+                    return (i-1)*Pow.pow(i, pow - 1);
+                }
+
+                long result = fastEulerTotient(b, totientCache) * (i-1) * Pow.pow(i, pow - 1);
+                totientCache.put(n, result);
+                return result;
+            }
+        }
+
+        //n is a prime
+        long result = n - 1;
+        totientCache.put(n, result);
+        return result;
+    }
+
     public static void printFactors(long n) {
         HashMap<Long, Long> factors = factorise(n);
         StringBuilder sb = new StringBuilder();
