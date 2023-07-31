@@ -40,7 +40,7 @@ public class MatMN
             for (int j=0; j<other.width; j++) {
                 double prod = 0;
                 for (int k=0; k<width; k++) {
-                    prod += mat[i][k] * mat[k][j];
+                    prod += mat[i][k] * other.mat[k][j];
                 }
                 result[i][j] = prod;
             }
