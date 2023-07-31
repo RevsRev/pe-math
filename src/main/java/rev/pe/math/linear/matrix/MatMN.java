@@ -1,10 +1,14 @@
 package rev.pe.math.linear.matrix;
 
+import lombok.Getter;
+
 import java.util.Random;
 
 public class MatMN
 {
+    @Getter
     private final int width;
+    @Getter
     private final int height;
     private final double[][] mat;
 
