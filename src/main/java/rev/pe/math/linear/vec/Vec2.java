@@ -1,4 +1,4 @@
-package rev.pe.math.vec;
+package rev.pe.math.linear.vec;
 
 public class Vec2
 {

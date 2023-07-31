@@ -1,4 +1,6 @@
-package rev.pe.math.vec;
+package rev.pe.math.linear.matrix;
+
+import rev.pe.math.linear.vec.Vec2;
 
 public class Mat2
 {
