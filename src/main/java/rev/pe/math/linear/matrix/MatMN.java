@@ -10,6 +10,8 @@ public class MatMN
     private final int width;
     @Getter
     private final int height;
+
+    @Getter
     private final double[][] mat;
 
     public MatMN(int height, int width) {
@@ -26,7 +28,7 @@ public class MatMN
 
     public static MatMN random(int width, int height, double min, double max) {
         Random r = new Random(System.currentTimeMillis());
-        double[][] randArr = new double[width][height];
+        double[][] randArr = new double[height][width];
         for (int i=0; i<height; i++) {
             for (int j=0; j<width; j++) {
                 randArr[i][j] = min + (max-min)*r.nextDouble();
@@ -36,21 +38,31 @@ public class MatMN
     }
 
     public MatMN mult(MatMN other) {
+        MatMN resultMatrix = new MatMN(new double[height][other.width]);
+        mult(other, resultMatrix);
+        return resultMatrix;
+    }
+    public void mult(MatMN other, MatMN resultMatrix) {
         if (width != other.height) {
             throw new IllegalArgumentException(String.format("Cannot multiply a %sx%s matrix by a %sx%s matrix", height, width, other.height, other.width));
         }
-        double[][] result = new double[other.width][height];
         for (int i=0; i<height; i++) {
             for (int j=0; j<other.width; j++) {
                 double prod = 0;
                 for (int k=0; k<width; k++) {
                     prod += mat[i][k] * other.mat[k][j];
                 }
-                result[i][j] = prod;
+                resultMatrix.mat[i][j] = prod;
             }
         }
-        return new MatMN(result);
     }
 
+    public void mult(double scalar) {
+        for (int i=0; i<height; i++) {
+            for (int j=0; j<width; j++) {
+                mat[i][j] *= scalar;
+            }
+        }
+    }
 
 }

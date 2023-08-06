@@ -35,4 +35,10 @@ public class Mat2
     public double det() {
         return a*d - c*b;
     }
+
+    public static Mat2 rot(double theta) {
+        double c = Math.cos(theta);
+        double s = Math.sin(theta);
+        return new Mat2(c, -s, s, c);
+    }
 }

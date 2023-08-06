@@ -18,6 +18,9 @@ public class Vec2
         return x*v.x + y*v.y;
     }
 
+    public double abs() {
+        return Math.sqrt(this.dot(this));
+    }
     public void plus(Vec2 v) {
         x += v.x;
         y += v.y;
@@ -29,6 +32,13 @@ public class Vec2
     }
 
     private static final double EPSILON = 0.001;
+
+    public void normalize() {
+        double abs = this.abs();
+        this.x /= abs;
+        this.y /= abs;
+    }
+
     public static Vec2 normalize(Vec2 p) {
         double x = p.x;
         double y = p.y;
